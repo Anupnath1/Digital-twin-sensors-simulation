@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "author": "Smart Agri Digital Twin",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp",
+      "top": 140,
+      "left": 220,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": 20,
+      "left": 20,
+      "attrs": { "temperature": "28", "humidity": "55" }
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": 20,
+      "left": 340,
+      "attrs": { "lux": "800" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 100,
+      "left": 340,
+      "attrs": { "value": "10000" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "soil1",
+      "top": 20,
+      "left": 540,
+      "attrs": { "label": "Soil Moisture", "value": "0.62" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 300,
+      "left": 100,
+      "attrs": { "color": "green", "label": "Status" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 300,
+      "left": 155,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    ["esp:3V3",   "dht1:VCC",  "red",    []],
+    ["esp:GND.1", "dht1:GND",  "black",  []],
+    ["esp:D4",    "dht1:SDA",  "green",  []],
+
+    ["esp:3V3",   "ldr1:VCC",  "red",    []],
+    ["esp:GND.1", "ldr1:GND",  "black",  []],
+    ["esp:D35",   "ldr1:DO",   "yellow", []],
+
+    ["esp:3V3",   "soil1:VCC", "red",    []],
+    ["esp:GND.1", "soil1:GND", "black",  []],
+    ["esp:D34",   "soil1:SIG", "blue",   []],
+
+    ["esp:D2",    "r2:1",      "orange", []],
+    ["r2:2",      "led1:A",    "orange", []],
+    ["led1:C",    "esp:GND.2", "black",  []]
+  ],
+  "dependencies": {}
+}
